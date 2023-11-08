@@ -14,14 +14,6 @@ def get_token(text):
 def setup():
     os_name = platform.system()
     if os_name == "Linux":
-        print("Установка на Linux.")
-        os.system("sudo apt update")
-        os.system("sudo apt install apt-transport-https ca-certificates curl software-properties-common")
-        os.system("curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -")
-        os.system("sudo add-apt-repository \"deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable\"")
-        os.system("sudo apt update")
-        os.system("sudo apt install docker-ce")
-        os.system("docker build -t luxurylp .")
         tokens = []
         while len(tokens) != 3:
             token = input("Введите токен VK не обрезая его >> ")
@@ -36,6 +28,14 @@ def setup():
 
         with open(os.path.join('luxurylp', 'lp_dc_config.json'), 'w', encoding='utf-8') as file:
             file.write('{"app_secret": "public", "app_id": 0}')
+        print("Установка на Linux.")
+        os.system("sudo apt update")
+        os.system("sudo apt install apt-transport-https ca-certificates curl software-properties-common")
+        os.system("curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -")
+        os.system("sudo add-apt-repository \"deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable\"")
+        os.system("sudo apt update")
+        os.system("sudo apt install docker-ce")
+        os.system("docker build -t luxurylp .")
 
         print("Конфиг записан")
         print("Что бы запустить пропишите docker run -it luxurylp")
