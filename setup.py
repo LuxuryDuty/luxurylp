@@ -12,7 +12,7 @@ def get_token(text):
 
 
 def setup():
-    if sys.version_info < (3, 7) or sys.version_info > (3, 8):
+    if sys.version_info < (3, 6) or sys.version_info > (3, 9):
         print("Версия Python не соответствует требованиям")
         exit(1)
     else:
@@ -26,7 +26,7 @@ def setup():
         os.system("sudo add-apt-repository \"deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable\"")
         os.system("sudo apt update")
         os.system("sudo apt install docker-ce")
-        
+
         os.system(f'{sys.executable} -m pip install --upgrade pip')
         os.system(f'{sys.executable} -m pip install -r requirements.txt')
 
