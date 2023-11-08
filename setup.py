@@ -12,11 +12,6 @@ def get_token(text):
 
 
 def setup():
-    if sys.version_info < (3, 6) or sys.version_info > (3, 9):
-        print("Версия Python не соответствует требованиям")
-        exit(1)
-    else:
-        print("Версия Python соответствует требованиям")
     os_name = platform.system()
     if os_name == "Linux":
         print("Установка на Linux.")
@@ -26,10 +21,7 @@ def setup():
         os.system("sudo add-apt-repository \"deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable\"")
         os.system("sudo apt update")
         os.system("sudo apt install docker-ce")
-
-        os.system(f'{sys.executable} -m pip install --upgrade pip')
-        os.system(f'{sys.executable} -m pip install -r requirements.txt')
-
+        os.system("docker build -t luxurylp .")
         tokens = []
         while len(tokens) != 3:
             token = input("Введите токен VK не обрезая его >> ")
@@ -46,6 +38,10 @@ def setup():
             file.write('{"app_secret": "public", "app_id": 0}')
 
         print("Конфиг записан")
+        print("Что бы запустить пропишите docker run -it luxurylp")
+        print("Что бы посмотреть процессы введите docker ps")
+        print("Что бы остановить процесс введите docker stop <id>")
+        print("Что бы запустить процесс вновь введите docker start <id>")
     elif os_name == "Windows":
         print("Установка на Windows.")
 
