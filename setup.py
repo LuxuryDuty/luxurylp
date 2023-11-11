@@ -43,6 +43,20 @@ def setup():
         print("Что бы остановить процесс введите docker stop <id>")
         print("Что бы запустить процесс вновь введите docker start <id>")
     elif os_name == "Windows":
+        tokens = []
+        while len(tokens) != 3:
+            token = input("Введите токен VK не обрезая его >> ")
+
+            tokens.append(get_token(token))
+
+        with open(os.path.join('config.json'), 'w', encoding='utf-8') as file:
+            db = {
+                "tokens": tokens
+            }
+            file.write(json.dumps(db))
+
+        with open(os.path.join('luxurylp', 'lp_dc_config.json'), 'w', encoding='utf-8') as file:
+            file.write('{"app_secret": "public", "app_id": 0}')
         print("Установка на Windows.")
 
         os.system(f'{sys.executable} -m pip install --upgrade pip')
